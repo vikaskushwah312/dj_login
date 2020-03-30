@@ -1,0 +1,32 @@
+{% extends 'layout.html'%}
+{% block content%}
+
+    {% for f in form.non_fields_erros %}
+        {{ f }}
+    {% endfor %}
+
+    <form action="/post/index/" method="POST">
+        {% csrf_token %}
+        <h1>This is your form </h1>
+        <br>
+        {% if form.errors %}
+        {% endif%}
+        {% if form.title.errors %}
+            {% for error in form.title.errors %}
+        <p class="text-danger">{{error}}</p>
+            {% endfor %}
+        {% endif %}
+
+        {% for f in form%}
+            <p>{{f.label_tag}}</p>
+            <p>{{f}}</p>
+        {% endfor%}
+        <button type="submit" value="submit">Submit</button>
+    </form>
+    {% if row_data %}
+        {% for row in row_data%}
+            <h1>{{row.title}}</h1>
+            <p>{{row.content}}</p>
+        {% endfor%}
+    {% endif%}
+{% endblock %}

@@ -41,13 +41,14 @@ def register(request):
     return render(request,'dj_register.html',data)
 
 def profile(request):
+    data = {'title':'Profile'}
     if request.user.is_authenticated:
         return render(request,'profile.html',data)
     else:
         messages.add_message(request,messages.INFO,'YOU have to login first')
         return redirect('/user/login')
 
-    data = {'title':'Profile'}
+    
     
 
 def logout(request):
